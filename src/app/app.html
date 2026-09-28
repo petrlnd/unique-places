@@ -18,32 +18,40 @@
 <section class="places">
   <div class="container">
     <div class="places__list">
-      <article class="place-card">
-        <img class="place-card__image" src="/images/places/mist-springs.jpg" alt="Mist Springs">
-        <div class="place-card__body">
-          <h2 class="place-card__title">Mist Springs</h2>
-          <div class="place-card__info">
-            <div class="place-card__meta">
-              <p class="place-card__category">Отель</p>
-              <p class="place-card__location">Имеровигли, Греция</p>
-            </div>
-            <div class="place-card__stats">
-              <div class="place-card__rating">
-                <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
-                5.0
+      @for (place of places; track place.id) {
+        <article class="place-card" [class.place-card--expanded]="place.isExpanded">
+          <img class="place-card__image" [src]="place.imageUrl" [alt]="place.name">
+          <div class="place-card__body">
+            <h2 class="place-card__title">{{ place.name }}</h2>
+            <div class="place-card__info">
+              <div class="place-card__meta">
+                <p class="place-card__category">{{ place.category }}</p>
+                <p class="place-card__location">{{ place.city }}, {{ place.country }}</p>
               </div>
-              <div class="place-card__price">€€€</div>
+              <div class="place-card__stats">
+                <div class="place-card__rating">
+                  <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
+                  {{ place.rating.toFixed(1) }}
+                </div>
+                @if (place.priceLevel) {
+                  <div class="place-card__price">{{ '€'.repeat(place.priceLevel) }}</div>
+                }
+              </div>
+              @if (place.tags.length) {
+                <ul class="place-card__tags">
+                  @for (tag of place.tags; track tag) {
+                    <li class="place-card__tag">{{ tag }}</li>
+                  }
+                </ul>
+              }
+              <p class="place-card__description">{{ place.description }}</p>
             </div>
-            <ul class="place-card__tags">
-              <li class="place-card__tag">Скала</li>
-              <li class="place-card__tag">Панорамный вид</li>
-              <li class="place-card__tag">Тихое место</li>
-            </ul>
-            <p class="place-card__description">Отель, высеченный прямо в скале над морем, где из каждого номера открывается панорамный вид на бескрайний горизонт. Пространство словно становится частью природного ландшафта, а мягкий свет и натуральные материалы</p>
+            <button class="place-card__more" type="button" (click)="place.isExpanded = !place.isExpanded">
+              {{ place.isExpanded ? 'Скрыть' : 'Подробнее' }}
+            </button>
           </div>
-          <button class="place-card__more" type="button">Подробнее</button>
-        </div>
-      </article>
+        </article>
+      }
     </div>
   </div>
 </section>

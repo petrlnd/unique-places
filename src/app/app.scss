@@ -172,6 +172,21 @@
   overflow: hidden;
 }
 
+.place-card--expanded {
+  .place-card__info {
+    height: auto;
+    min-height: 206px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .place-card__description {
+    overflow: visible;
+  }
+}
+
 .place-card__more {
   align-self: flex-start;
   padding: 0;
