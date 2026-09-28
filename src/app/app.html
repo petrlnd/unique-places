@@ -1,25 +1,62 @@
 <header class="header">
   <div class="container">
-    <img class="logo" src="../../public/images/logo.png" alt="Логотип">
+    <img class="logo" src="/images/logo.png" width="191" height="36" alt="Логотип">
   </div>
 </header>
 
 <section class="hero">
-<div class="hero__image" style="background-image: url('/images/hero.png')"></div>
   <div class="container">
     <div class="hero__content">
       <h1 class="hero__header">Места, которые стоит увидеть хотя бы раз в жизни</h1>
       <div class="hero__separator"></div>
-      <div class="hero__descr">Необычные рестораны, отели, развлечения и другие уникальные места со всего мира</div>
+      <p class="hero__descr">Необычные рестораны, отели, развлечения<br>и другие уникальные места со всего мира</p>
       <div class="hero__decoration"></div>
     </div>
   </div>
 </section>
 
 <section class="places">
-    <div class="container">
-
+  <div class="container">
+    <div class="places__list">
+      <article class="place-card">
+        <img class="place-card__image" src="/images/places/mist-springs.jpg" alt="Mist Springs">
+        <div class="place-card__body">
+          <h2 class="place-card__title">Mist Springs</h2>
+          <div class="place-card__info">
+            <div class="place-card__meta">
+              <p class="place-card__category">Отель</p>
+              <p class="place-card__location">Имеровигли, Греция</p>
+            </div>
+            <div class="place-card__stats">
+              <div class="place-card__rating">
+                <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
+                5.0
+              </div>
+              <div class="place-card__price">€€€</div>
+            </div>
+            <ul class="place-card__tags">
+              <li class="place-card__tag">Скала</li>
+              <li class="place-card__tag">Панорамный вид</li>
+              <li class="place-card__tag">Тихое место</li>
+            </ul>
+            <p class="place-card__description">Отель, высеченный прямо в скале над морем, где из каждого номера открывается панорамный вид на бескрайний горизонт. Пространство словно становится частью природного ландшафта, а мягкий свет и натуральные материалы</p>
+          </div>
+          <button class="place-card__more" type="button">Подробнее</button>
+        </div>
+      </article>
     </div>
+  </div>
 </section>
 
-<footer class="footer"></footer>
+<footer class="footer">
+  <div class="container">
+    <div class="footer__about">
+      <img class="logo" src="/images/logo.png" width="191" height="36" alt="Логотип">
+      <p class="footer__copyright">© 2026 unique.places</p>
+    </div>
+    <div class="footer__links">
+      <a class="footer__link" href="#">Pinterest</a>
+      <a class="footer__link" href="#">Telegram</a>
+    </div>
+  </div>
+</footer>

@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/fonts';
+@use 'styles/variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Onest', Arial, sans-serif;
+  line-height: 1.2;
+  color: $color-dark-gray;
+  background-color: $color-page-bg;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -1,0 +1,223 @@
+@use '../styles/variables' as *;
+
+// Header
+
+.header {
+  height: 80px;
+  background-color: $color-header-bg;
+  border-bottom: 1px solid $color-header-border;
+
+  .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+// Hero
+
+.hero {
+  height: 450px;
+  background: url('/images/hero.png') no-repeat center;
+}
+
+.hero__content {
+  padding-top: 60px;
+}
+
+.hero__header {
+  max-width: 630px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $color-gray;
+}
+
+.hero__separator {
+  width: 253px;
+  height: 25px;
+  margin-top: 20px;
+  background: url('/images/line-star.png') no-repeat;
+}
+
+.hero__descr {
+  margin-top: 13px;
+  font-size: 25px;
+}
+
+.hero__decoration {
+  width: 168px;
+  height: 78px;
+  margin-top: 25px;
+  background: url('/images/stamp.png') no-repeat;
+}
+
+// Places
+
+.places {
+  padding: 135px 0 30px;
+  background: url('/images/pattern.png') no-repeat top center;
+}
+
+.places__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 25px 24px;
+}
+
+// Place card
+
+.place-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 24px;
+  overflow: hidden;
+  background-color: $color-white;
+  border: 1px solid $color-card-border;
+  border-radius: 16px;
+}
+
+.place-card__image {
+  width: 100%;
+  height: 212px;
+  object-fit: cover;
+}
+
+.place-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.place-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-gray;
+}
+
+.place-card__info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 206px;
+  font-size: 14px;
+
+  // Затухание текста описания внизу свёрнутой карточки
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -8px;
+    left: 0;
+    height: 20px;
+    background: linear-gradient(to top, $color-white, rgba($color-white, 0));
+  }
+}
+
+.place-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.place-card__category {
+  font-weight: 600;
+  color: $color-light-brown;
+}
+
+.place-card__location {
+  color: $color-light-gray-2;
+}
+
+.place-card__stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.place-card__rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 45px;
+}
+
+.place-card__price {
+  font-weight: 600;
+  color: $color-light-brown;
+}
+
+.place-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.place-card__tag {
+  padding: 5px 10px;
+  color: $color-gray;
+  background-color: $color-light-gray-1;
+  border-radius: 1000px;
+}
+
+.place-card__description {
+  flex: 1;
+  overflow: hidden;
+}
+
+.place-card__more {
+  align-self: flex-start;
+  padding: 0;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-brown;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $color-brown;
+  cursor: pointer;
+}
+
+// Footer
+
+.footer {
+  height: 125px;
+  padding-top: 30px;
+  background-color: $color-light-beige;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.footer__about {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__copyright {
+  font-size: 14px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.footer__link {
+  font-size: 16px;
+  color: $color-light-brown;
+  border-bottom: 1px solid $color-light-brown;
+}
