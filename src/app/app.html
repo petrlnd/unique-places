@@ -44,16 +44,16 @@
               <h2 class="place-card__title">{{ place.name }}</h2>
               <div class="place-card__info">
                 <div class="place-card__meta">
-                  <p class="place-card__category">{{ place.category }}</p>
+                  <p class="place-card__category">{{ place.category | category }}</p>
                   <p class="place-card__location">{{ place.city }}, {{ place.country }}</p>
                 </div>
                 <div class="place-card__stats">
                   <div class="place-card__rating">
                     <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
-                    {{ place.rating.toFixed(1) }}
+                    {{ place.rating | rating }}
                   </div>
                   @if (place.priceLevel) {
-                    <div class="place-card__price">{{ '€'.repeat(place.priceLevel) }}</div>
+                    <div class="place-card__price">{{ place.priceLevel | price }}</div>
                   }
                 </div>
                 @if (place.tags.length) {
@@ -109,16 +109,16 @@
           <h2 class="modal__title">{{ selectedPlace.name }}</h2>
           <div class="modal__info">
             <div class="modal__meta">
-              <p class="modal__category">{{ selectedPlace.category }}</p>
+              <p class="modal__category">{{ selectedPlace.category | category }}</p>
               <p class="modal__location">{{ selectedPlace.city }}, {{ selectedPlace.country }}</p>
             </div>
             <div class="modal__stats">
               <div class="modal__rating">
                 <img src="/images/rating-star.svg" alt="Рейтинг">
-                {{ selectedPlace.rating.toFixed(1) }}
+                {{ selectedPlace.rating | rating }}
               </div>
               @if (selectedPlace.priceLevel) {
-                <div class="modal__price">{{ '€'.repeat(selectedPlace.priceLevel) }}</div>
+                <div class="modal__price">{{ selectedPlace.priceLevel | price }}</div>
               }
             </div>
             @if (selectedPlace.tags.length) {

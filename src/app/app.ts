@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { Place } from './place';
+import { CategoryPipe } from './pipes/category-pipe';
+import { PricePipe } from './pipes/price-pipe';
+import { RatingPipe } from './pipes/rating-pipe';
 
 @Component({
+  imports: [CategoryPipe, PricePipe, RatingPipe],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
@@ -12,10 +16,10 @@ export class App {
       id: 1,
       name: 'Mist Springs',
       imageUrl: '/images/places/mist-springs.jpg',
-      category: 'Отель',
+      category: 'hotel',
       city: 'Имеровигли',
       country: 'Греция',
-      rating: 5.0,
+      rating: 5,
       priceLevel: 3,
       tags: ['Скала', 'Панорамный вид', 'Тихое место'],
       description:
@@ -25,7 +29,7 @@ export class App {
       id: 2,
       name: 'Aqua Vista',
       imageUrl: '/images/places/aqua-vista.jpg',
-      category: 'Ресторан',
+      category: 'restaurant',
       city: 'Мале',
       country: 'Мальдивы',
       rating: 4.9,
@@ -38,7 +42,7 @@ export class App {
       id: 3,
       name: 'Mist Springs',
       imageUrl: '/images/places/mist-springs-japan.jpg',
-      category: 'СПА и релакс',
+      category: 'spa',
       city: 'Хаконе',
       country: 'Япония',
       rating: 4.7,
@@ -52,7 +56,7 @@ export class App {
       id: 4,
       name: 'Skyline Cinema',
       imageUrl: '/images/places/skyline-cinema.jpg',
-      category: 'Развлечения',
+      category: 'entertainment',
       city: 'Дубай',
       country: 'ОАЭ',
       rating: 4.4,
@@ -65,7 +69,7 @@ export class App {
       id: 5,
       name: 'Echoes of Stone',
       imageUrl: '/images/places/echoes-of-stone.jpg',
-      category: 'Культура',
+      category: 'culture',
       city: 'Матера',
       country: 'Италия',
       rating: 4.9,
@@ -78,7 +82,7 @@ export class App {
       id: 6,
       name: 'Aurora Glass Lodge',
       imageUrl: '/images/places/aurora-glass-lodge.jpg',
-      category: 'Отель',
+      category: 'hotel',
       city: 'Рованиеми',
       country: 'Финляндия',
       rating: 4.8,
