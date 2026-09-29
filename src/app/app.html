@@ -1,6 +1,10 @@
 <header class="header">
   <div class="container">
     <img class="logo" src="/images/logo.png" width="191" height="36" alt="Логотип">
+    <div class="header__favorites">
+      <img class="header__favorites-icon" src="/images/favorites.svg" alt="Избранное">
+      <span class="header__favorites-count">0</span>
+    </div>
   </div>
 </header>
 
@@ -17,42 +21,62 @@
 
 <section class="places">
   <div class="container">
-    <div class="places__list">
-      @for (place of places; track place.id) {
-        <article class="place-card" [class.place-card--expanded]="place.isExpanded">
-          <img class="place-card__image" [src]="place.imageUrl" [alt]="place.name">
-          <div class="place-card__body">
-            <h2 class="place-card__title">{{ place.name }}</h2>
-            <div class="place-card__info">
-              <div class="place-card__meta">
-                <p class="place-card__category">{{ place.category }}</p>
-                <p class="place-card__location">{{ place.city }}, {{ place.country }}</p>
-              </div>
-              <div class="place-card__stats">
-                <div class="place-card__rating">
-                  <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
-                  {{ place.rating.toFixed(1) }}
-                </div>
-                @if (place.priceLevel) {
-                  <div class="place-card__price">{{ '€'.repeat(place.priceLevel) }}</div>
-                }
-              </div>
-              @if (place.tags.length) {
-                <ul class="place-card__tags">
-                  @for (tag of place.tags; track tag) {
-                    <li class="place-card__tag">{{ tag }}</li>
-                  }
-                </ul>
-              }
-              <p class="place-card__description">{{ place.description }}</p>
-            </div>
-            <button class="place-card__more" type="button" (click)="place.isExpanded = !place.isExpanded">
-              {{ place.isExpanded ? 'Скрыть' : 'Подробнее' }}
-            </button>
-          </div>
-        </article>
-      }
+    <div class="categories">
+      <button class="categories__tab categories__tab--active" type="button">Все</button>
+      <button class="categories__tab" type="button">Отели</button>
+      <button class="categories__tab" type="button">Рестораны</button>
+      <button class="categories__tab" type="button">Развлечения</button>
+      <button class="categories__tab" type="button">Природа</button>
+      <button class="categories__tab" type="button">Культура</button>
+      <button class="categories__tab" type="button">Архитектура</button>
+      <button class="categories__tab" type="button">СПА и релакс</button>
     </div>
+    @if (places.length) {
+      <div class="places__list">
+        @for (place of places; track place.id) {
+          <article class="place-card">
+            <img class="place-card__image" [src]="place.imageUrl" [alt]="place.name">
+            <button class="place-card__favorite" type="button" aria-label="Добавить в избранное"></button>
+            @if (place.badge) {
+              <span class="place-card__badge">{{ place.badge }}</span>
+            }
+            <div class="place-card__body">
+              <h2 class="place-card__title">{{ place.name }}</h2>
+              <div class="place-card__info">
+                <div class="place-card__meta">
+                  <p class="place-card__category">{{ place.category }}</p>
+                  <p class="place-card__location">{{ place.city }}, {{ place.country }}</p>
+                </div>
+                <div class="place-card__stats">
+                  <div class="place-card__rating">
+                    <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
+                    {{ place.rating.toFixed(1) }}
+                  </div>
+                  @if (place.priceLevel) {
+                    <div class="place-card__price">{{ '€'.repeat(place.priceLevel) }}</div>
+                  }
+                </div>
+                @if (place.tags.length) {
+                  <ul class="place-card__tags">
+                    @for (tag of place.tags; track tag) {
+                      <li class="place-card__tag">{{ tag }}</li>
+                    }
+                  </ul>
+                }
+                <p class="place-card__description">{{ place.description }}</p>
+              </div>
+              <button class="place-card__more" type="button" (click)="selectedPlace = place">Подробнее</button>
+            </div>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="not-found">
+        <img class="not-found__image" src="/images/not-found.png" width="544" height="440" alt="">
+        <p class="not-found__title">Ничего не найдено</p>
+        <p class="not-found__text">В этой категории пока нет уникальных мест</p>
+      </div>
+    }
   </div>
 </section>
 
@@ -68,3 +92,46 @@
     </div>
   </div>
 </footer>
+
+@if (selectedPlace) {
+  <div class="modal" (click)="selectedPlace = null">
+    <div class="modal__window" (click)="$event.stopPropagation()">
+      <button class="modal__close" type="button" aria-label="Закрыть" (click)="selectedPlace = null"></button>
+      <div class="modal__content">
+        <div class="modal__media">
+          <img class="modal__image" [src]="selectedPlace.imageUrl" [alt]="selectedPlace.name">
+          <button class="modal__favorite" type="button" aria-label="Добавить в избранное"></button>
+          @if (selectedPlace.badge) {
+            <span class="modal__badge">{{ selectedPlace.badge }}</span>
+          }
+        </div>
+        <div class="modal__body">
+          <h2 class="modal__title">{{ selectedPlace.name }}</h2>
+          <div class="modal__info">
+            <div class="modal__meta">
+              <p class="modal__category">{{ selectedPlace.category }}</p>
+              <p class="modal__location">{{ selectedPlace.city }}, {{ selectedPlace.country }}</p>
+            </div>
+            <div class="modal__stats">
+              <div class="modal__rating">
+                <img src="/images/rating-star.svg" alt="Рейтинг">
+                {{ selectedPlace.rating.toFixed(1) }}
+              </div>
+              @if (selectedPlace.priceLevel) {
+                <div class="modal__price">{{ '€'.repeat(selectedPlace.priceLevel) }}</div>
+              }
+            </div>
+            @if (selectedPlace.tags.length) {
+              <ul class="modal__tags">
+                @for (tag of selectedPlace.tags; track tag) {
+                  <li class="modal__tag">{{ tag }}</li>
+                }
+              </ul>
+            }
+            <p class="modal__description">{{ selectedPlace.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -9,5 +9,5 @@ export interface Place {
   priceLevel?: number;
   tags: string[];
   description: string;
-  isExpanded?: boolean;
+  badge?: string;
 }
