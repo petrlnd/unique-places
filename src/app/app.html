@@ -22,19 +22,29 @@
 <section class="places">
   <div class="container">
     <div class="categories">
-      <button class="categories__tab categories__tab--active" type="button">Все</button>
-      <button class="categories__tab" type="button">Отели</button>
-      <button class="categories__tab" type="button">Рестораны</button>
-      <button class="categories__tab" type="button">Развлечения</button>
-      <button class="categories__tab" type="button">Природа</button>
-      <button class="categories__tab" type="button">Культура</button>
-      <button class="categories__tab" type="button">Архитектура</button>
-      <button class="categories__tab" type="button">СПА и релакс</button>
+      <button
+        class="categories__tab"
+        type="button"
+        [class.categories__tab--active]="selectedCategory() === 'all'"
+        (click)="selectedCategory.set('all')"
+      >
+        Все
+      </button>
+      @for (category of categories; track category) {
+        <button
+          class="categories__tab"
+          type="button"
+          [class.categories__tab--active]="selectedCategory() === category"
+          (click)="selectedCategory.set(category)"
+        >
+          {{ category | category: 'plural' }}
+        </button>
+      }
     </div>
-    @if (places.length) {
+    @if (filteredPlaces().length) {
       <div class="places__list">
-        @for (place of places; track place.id) {
-          <app-place-card [place]="place" (openDetails)="selectedPlace = place" />
+        @for (place of filteredPlaces(); track place.id) {
+          <app-place-card [place]="place" (openDetails)="selectedPlace.set(place)" />
         }
       </div>
     } @else {
@@ -60,42 +70,42 @@
   </div>
 </footer>
 
-@if (selectedPlace) {
-  <div class="modal" (click)="selectedPlace = null">
+@if (selectedPlace(); as place) {
+  <div class="modal" (click)="selectedPlace.set(null)">
     <div class="modal__window" (click)="$event.stopPropagation()">
-      <button class="modal__close" type="button" aria-label="Закрыть" (click)="selectedPlace = null"></button>
+      <button class="modal__close" type="button" aria-label="Закрыть" (click)="selectedPlace.set(null)"></button>
       <div class="modal__content">
         <div class="modal__media">
-          <img class="modal__image" [src]="selectedPlace.imageUrl" [alt]="selectedPlace.name">
+          <img class="modal__image" [src]="place.imageUrl" [alt]="place.name">
           <button class="modal__favorite" type="button" aria-label="Добавить в избранное"></button>
-          @if (selectedPlace.badge) {
-            <span class="modal__badge">{{ selectedPlace.badge }}</span>
+          @if (place.badge) {
+            <span class="modal__badge">{{ place.badge }}</span>
           }
         </div>
         <div class="modal__body">
-          <h2 class="modal__title">{{ selectedPlace.name }}</h2>
+          <h2 class="modal__title">{{ place.name }}</h2>
           <div class="modal__info">
             <div class="modal__meta">
-              <p class="modal__category">{{ selectedPlace.category | category }}</p>
-              <p class="modal__location">{{ selectedPlace.city }}, {{ selectedPlace.country }}</p>
+              <p class="modal__category">{{ place.category | category }}</p>
+              <p class="modal__location">{{ place.city }}, {{ place.country }}</p>
             </div>
             <div class="modal__stats">
               <div class="modal__rating">
                 <img src="/images/rating-star.svg" alt="Рейтинг">
-                {{ selectedPlace.rating | rating }}
+                {{ place.rating | rating }}
               </div>
-              @if (selectedPlace.priceLevel) {
-                <div class="modal__price">{{ selectedPlace.priceLevel | price }}</div>
+              @if (place.priceLevel) {
+                <div class="modal__price">{{ place.priceLevel | price }}</div>
               }
             </div>
-            @if (selectedPlace.tags.length) {
+            @if (place.tags.length) {
               <ul class="modal__tags">
-                @for (tag of selectedPlace.tags; track tag) {
+                @for (tag of place.tags; track tag) {
                   <li class="modal__tag">{{ tag }}</li>
                 }
               </ul>
             }
-            <p class="modal__description">{{ selectedPlace.description }}</p>
+            <p class="modal__description">{{ place.description }}</p>
           </div>
         </div>
       </div>

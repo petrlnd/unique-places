@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { Category } from './types/category';
 import { Place } from './types/place';
 import { CategoryPipe } from './pipes/category-pipe';
 import { PricePipe } from './pipes/price-pipe';
@@ -12,7 +13,17 @@ import { PlaceCard } from './place-card/place-card';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly places: Place[] = [
+  protected readonly categories: Category[] = [
+    'hotel',
+    'restaurant',
+    'entertainment',
+    'nature',
+    'culture',
+    'architecture',
+    'spa',
+  ];
+
+  protected readonly places = signal<Place[]>([
     {
       id: 1,
       name: 'Mist Springs',
@@ -92,7 +103,17 @@ export class App {
       description:
         'Стеклянные домики посреди заснеженного леса, где северное сияние можно наблюдать прямо из кровати. Панорамные стены и прозрачная крыша открывают вид на звёздное небо и бескрайние снежные пейзажи, сохраняя внутри тепло и уют.',
     },
-  ];
+  ]);
 
-  protected selectedPlace: Place | null = null;
+  protected readonly selectedCategory = signal<Category | 'all'>('all');
+
+  protected readonly filteredPlaces = computed(() => {
+    const category = this.selectedCategory();
+    if (category === 'all') {
+      return this.places();
+    }
+    return this.places().filter((place) => place.category === category);
+  });
+
+  protected readonly selectedPlace = signal<Place | null>(null);
 }
