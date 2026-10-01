@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Category } from '../place';
+import { Category } from '../types/category';
 
 const CATEGORY_LABELS: Record<Category, string> = {
   hotel: 'Отель',

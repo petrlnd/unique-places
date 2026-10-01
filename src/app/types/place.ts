@@ -1,11 +1,4 @@
-export type Category =
-  | 'hotel'
-  | 'restaurant'
-  | 'entertainment'
-  | 'nature'
-  | 'culture'
-  | 'architecture'
-  | 'spa';
+import { Category } from './category';
 
 export interface Place {
   id: number;

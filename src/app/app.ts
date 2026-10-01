@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Place } from './place';
+import { Place } from './types/place';
 import { CategoryPipe } from './pipes/category-pipe';
 import { PricePipe } from './pipes/price-pipe';
 import { RatingPipe } from './pipes/rating-pipe';
+import { PlaceCard } from './place-card/place-card';
 
 @Component({
-  imports: [CategoryPipe, PricePipe, RatingPipe],
+  imports: [CategoryPipe, PricePipe, RatingPipe, PlaceCard],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',

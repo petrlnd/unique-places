@@ -34,40 +34,7 @@
     @if (places.length) {
       <div class="places__list">
         @for (place of places; track place.id) {
-          <article class="place-card">
-            <img class="place-card__image" [src]="place.imageUrl" [alt]="place.name">
-            <button class="place-card__favorite" type="button" aria-label="Добавить в избранное"></button>
-            @if (place.badge) {
-              <span class="place-card__badge">{{ place.badge }}</span>
-            }
-            <div class="place-card__body">
-              <h2 class="place-card__title">{{ place.name }}</h2>
-              <div class="place-card__info">
-                <div class="place-card__meta">
-                  <p class="place-card__category">{{ place.category | category }}</p>
-                  <p class="place-card__location">{{ place.city }}, {{ place.country }}</p>
-                </div>
-                <div class="place-card__stats">
-                  <div class="place-card__rating">
-                    <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
-                    {{ place.rating | rating }}
-                  </div>
-                  @if (place.priceLevel) {
-                    <div class="place-card__price">{{ place.priceLevel | price }}</div>
-                  }
-                </div>
-                @if (place.tags.length) {
-                  <ul class="place-card__tags">
-                    @for (tag of place.tags; track tag) {
-                      <li class="place-card__tag">{{ tag }}</li>
-                    }
-                  </ul>
-                }
-                <p class="place-card__description">{{ place.description }}</p>
-              </div>
-              <button class="place-card__more" type="button" (click)="selectedPlace = place">Подробнее</button>
-            </div>
-          </article>
+          <app-place-card [place]="place" (openDetails)="selectedPlace = place" />
         }
       </div>
     } @else {
