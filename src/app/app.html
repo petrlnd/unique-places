@@ -3,7 +3,9 @@
     <img class="logo" src="/images/logo.png" width="191" height="36" alt="Логотип">
     <div class="header__favorites">
       <img class="header__favorites-icon" src="/images/favorites.svg" alt="Избранное">
-      <span class="header__favorites-count">0</span>
+      @if (favoritesCount()) {
+        <span class="header__favorites-count">{{ favoritesCount() }}</span>
+      }
     </div>
   </div>
 </header>
@@ -44,7 +46,12 @@
     @if (filteredPlaces().length) {
       <div class="places__list">
         @for (place of filteredPlaces(); track place.id) {
-          <app-place-card [place]="place" (openDetails)="selectedPlace.set(place)" />
+          <app-place-card
+            [place]="place"
+            [isFavorite]="favoriteIds().includes(place.id)"
+            (openDetails)="selectedPlace.set(place)"
+            (favoriteToggle)="toggleFavorite(place.id)"
+          />
         }
       </div>
     } @else {
@@ -77,7 +84,13 @@
       <div class="modal__content">
         <div class="modal__media">
           <img class="modal__image" [src]="place.imageUrl" [alt]="place.name">
-          <button class="modal__favorite" type="button" aria-label="Добавить в избранное"></button>
+          <button
+            class="modal__favorite"
+            type="button"
+            [class.modal__favorite--active]="favoriteIds().includes(place.id)"
+            [attr.aria-label]="favoriteIds().includes(place.id) ? 'Удалить из избранного' : 'Добавить в избранное'"
+            (click)="toggleFavorite(place.id)"
+          ></button>
           @if (place.badge) {
             <span class="modal__badge">{{ place.badge }}</span>
           }

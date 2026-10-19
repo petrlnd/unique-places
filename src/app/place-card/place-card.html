@@ -1,6 +1,12 @@
 <article class="place-card">
   <img class="place-card__image" [src]="place().imageUrl" [alt]="place().name">
-  <button class="place-card__favorite" type="button" aria-label="Добавить в избранное"></button>
+  <button
+    class="place-card__favorite"
+    type="button"
+    [class.place-card__favorite--active]="isFavorite()"
+    [attr.aria-label]="isFavorite() ? 'Удалить из избранного' : 'Добавить в избранное'"
+    (click)="favoriteToggle.emit()"
+  ></button>
   @if (place().badge) {
     <span class="place-card__badge">{{ place().badge }}</span>
   }

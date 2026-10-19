@@ -12,5 +12,7 @@ import { RatingPipe } from '../pipes/rating-pipe';
 })
 export class PlaceCard {
   readonly place = input.required<Place>();
+  readonly isFavorite = input(false);
   readonly openDetails = output();
+  readonly favoriteToggle = output();
 }

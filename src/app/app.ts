@@ -1,10 +1,12 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { Category } from './types/category';
 import { Place } from './types/place';
 import { CategoryPipe } from './pipes/category-pipe';
 import { PricePipe } from './pipes/price-pipe';
 import { RatingPipe } from './pipes/rating-pipe';
 import { PlaceCard } from './place-card/place-card';
+
+const FAVORITES_STORAGE_KEY = 'favoriteIds';
 
 @Component({
   imports: [CategoryPipe, PricePipe, RatingPipe, PlaceCard],
@@ -116,4 +118,25 @@ export class App {
   });
 
   protected readonly selectedPlace = signal<Place | null>(null);
+
+  protected readonly favoriteIds = signal<number[]>(this.loadFavoriteIds());
+
+  protected readonly favoritesCount = computed(() => this.favoriteIds().length);
+
+  constructor() {
+    effect(() => {
+      localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(this.favoriteIds()));
+    });
+  }
+
+  protected toggleFavorite(id: number): void {
+    this.favoriteIds.update((ids) =>
+      ids.includes(id) ? ids.filter((favoriteId) => favoriteId !== id) : [...ids, id],
+    );
+  }
+
+  private loadFavoriteIds(): number[] {
+    const saved = localStorage.getItem(FAVORITES_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  }
 }
