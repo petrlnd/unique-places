@@ -5,6 +5,7 @@
     type="button"
     [class.place-card__favorite--active]="isFavorite()"
     [attr.aria-label]="isFavorite() ? 'Удалить из избранного' : 'Добавить в избранное'"
+    [appTooltip]="isFavorite() ? 'Удалить из избранного' : 'Добавить в избранное'"
     (click)="favoriteToggle.emit()"
   ></button>
   @if (place().badge) {

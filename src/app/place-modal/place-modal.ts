@@ -3,9 +3,10 @@ import { Place } from '../types/place';
 import { CategoryPipe } from '../pipes/category-pipe';
 import { PricePipe } from '../pipes/price-pipe';
 import { RatingPipe } from '../pipes/rating-pipe';
+import { TooltipDirective } from '../directives/tooltip.directive';
 
 @Component({
-  imports: [CategoryPipe, PricePipe, RatingPipe],
+  imports: [CategoryPipe, PricePipe, RatingPipe, TooltipDirective],
   selector: 'app-place-modal',
   styleUrl: './place-modal.scss',
   templateUrl: './place-modal.html',
