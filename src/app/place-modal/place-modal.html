@@ -1,0 +1,46 @@
+<div class="modal" (click)="closed.emit()">
+  <div class="modal__window" (click)="$event.stopPropagation()">
+    <button class="modal__close" type="button" aria-label="Закрыть" (click)="closed.emit()"></button>
+    <div class="modal__content">
+      <div class="modal__media">
+        <img class="modal__image" [src]="place().imageUrl" [alt]="place().name">
+        <button
+          class="modal__favorite"
+          type="button"
+          [class.modal__favorite--active]="isFavorite()"
+          [attr.aria-label]="isFavorite() ? 'Удалить из избранного' : 'Добавить в избранное'"
+          (click)="favoriteToggle.emit()"
+        ></button>
+        @if (place().badge) {
+          <span class="modal__badge">{{ place().badge }}</span>
+        }
+      </div>
+      <div class="modal__body">
+        <h2 class="modal__title">{{ place().name }}</h2>
+        <div class="modal__info">
+          <div class="modal__meta">
+            <p class="modal__category">{{ place().category | category }}</p>
+            <p class="modal__location">{{ place().city }}, {{ place().country }}</p>
+          </div>
+          <div class="modal__stats">
+            <div class="modal__rating">
+              <img src="/images/rating-star.svg" alt="Рейтинг">
+              {{ place().rating | rating }}
+            </div>
+            @if (place().priceLevel; as priceLevel) {
+              <div class="modal__price">{{ priceLevel | price }}</div>
+            }
+          </div>
+          @if (place().tags.length) {
+            <ul class="modal__tags">
+              @for (tag of place().tags; track tag) {
+                <li class="modal__tag">{{ tag }}</li>
+              }
+            </ul>
+          }
+          <p class="modal__description">{{ place().description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

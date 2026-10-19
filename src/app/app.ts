@@ -2,14 +2,13 @@ import { Component, computed, effect, signal } from '@angular/core';
 import { Category } from './types/category';
 import { Place } from './types/place';
 import { CategoryPipe } from './pipes/category-pipe';
-import { PricePipe } from './pipes/price-pipe';
-import { RatingPipe } from './pipes/rating-pipe';
 import { PlaceCard } from './place-card/place-card';
+import { PlaceModal } from './place-modal/place-modal';
 
 const FAVORITES_STORAGE_KEY = 'favoriteIds';
 
 @Component({
-  imports: [CategoryPipe, PricePipe, RatingPipe, PlaceCard],
+  imports: [CategoryPipe, PlaceCard, PlaceModal],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',

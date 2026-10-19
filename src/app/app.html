@@ -78,50 +78,10 @@
 </footer>
 
 @if (selectedPlace(); as place) {
-  <div class="modal" (click)="selectedPlace.set(null)">
-    <div class="modal__window" (click)="$event.stopPropagation()">
-      <button class="modal__close" type="button" aria-label="Закрыть" (click)="selectedPlace.set(null)"></button>
-      <div class="modal__content">
-        <div class="modal__media">
-          <img class="modal__image" [src]="place.imageUrl" [alt]="place.name">
-          <button
-            class="modal__favorite"
-            type="button"
-            [class.modal__favorite--active]="favoriteIds().includes(place.id)"
-            [attr.aria-label]="favoriteIds().includes(place.id) ? 'Удалить из избранного' : 'Добавить в избранное'"
-            (click)="toggleFavorite(place.id)"
-          ></button>
-          @if (place.badge) {
-            <span class="modal__badge">{{ place.badge }}</span>
-          }
-        </div>
-        <div class="modal__body">
-          <h2 class="modal__title">{{ place.name }}</h2>
-          <div class="modal__info">
-            <div class="modal__meta">
-              <p class="modal__category">{{ place.category | category }}</p>
-              <p class="modal__location">{{ place.city }}, {{ place.country }}</p>
-            </div>
-            <div class="modal__stats">
-              <div class="modal__rating">
-                <img src="/images/rating-star.svg" alt="Рейтинг">
-                {{ place.rating | rating }}
-              </div>
-              @if (place.priceLevel) {
-                <div class="modal__price">{{ place.priceLevel | price }}</div>
-              }
-            </div>
-            @if (place.tags.length) {
-              <ul class="modal__tags">
-                @for (tag of place.tags; track tag) {
-                  <li class="modal__tag">{{ tag }}</li>
-                }
-              </ul>
-            }
-            <p class="modal__description">{{ place.description }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-place-modal
+    [place]="place"
+    [isFavorite]="favoriteIds().includes(place.id)"
+    (closed)="selectedPlace.set(null)"
+    (favoriteToggle)="toggleFavorite(place.id)"
+  />
 }
