@@ -1,0 +1,72 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  display: block;
+  background: url('/images/pattern.png') no-repeat center 167px;
+}
+
+.banner {
+  height: 215px;
+  padding-top: 60px;
+  background: url('/images/places-band.png') no-repeat center top / cover;
+}
+
+.banner__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $color-gray;
+}
+
+.banner__separator {
+  width: 253px;
+  height: 25px;
+  margin-top: 10.5px;
+  background: url('/images/line-star.png') no-repeat;
+}
+
+.places {
+  padding: 70px 0 100px;
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+}
+
+.categories__tab {
+  padding: 8px 20px;
+  font: inherit;
+  font-size: 18px;
+  color: $color-dark-gray;
+  background-color: $color-page-bg;
+  border: 1px solid $color-gray;
+  border-radius: 1000px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-light-brown;
+    border-color: $color-beige;
+  }
+}
+
+.categories__tab--active,
+.categories__tab--active:hover {
+  color: $color-dark-gray;
+  background-color: $color-beige;
+  border-color: $color-beige;
+}
+
+.places__list {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 25px 24px;
+}
+
+.places__state {
+  display: block;
+  margin-top: 100px;
+}

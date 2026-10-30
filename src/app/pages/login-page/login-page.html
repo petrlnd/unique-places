@@ -1,0 +1,100 @@
+<section class="login">
+  <div class="container">
+    <div class="login__content">
+      <h1 class="login__title">Войти в unique.places</h1>
+      <div class="login__separator"></div>
+      <p class="login__subtitle">Откройте доступ к уникальным местам со всего мира</p>
+      @let emailField = loginForm.email();
+      @let passwordField = loginForm.password();
+      <form
+        class="login__form"
+        [class.login__form--error]="loginForm().errors().length"
+        [formRoot]="loginForm"
+      >
+        <div
+          class="field"
+          [class.field--filled]="emailField.value()"
+          [class.field--error]="emailField.touched() && emailField.invalid()"
+        >
+          <label class="field__label" for="login-email">Введите Email</label>
+          <input
+            class="field__input"
+            id="login-email"
+            type="email"
+            placeholder="Введите email"
+            autocomplete="email"
+            [formField]="loginForm.email"
+          >
+          @if (emailField.errors()[0]; as error) {
+            <p class="field__error">{{ error.message }}</p>
+          }
+        </div>
+        <div
+          class="field"
+          [class.field--filled]="passwordField.value()"
+          [class.field--error]="passwordField.touched() && passwordField.invalid()"
+        >
+          <label class="field__label" for="login-password">Введите пароль</label>
+          <div class="field__control">
+            <input
+              class="field__input field__input--password"
+              id="login-password"
+              placeholder="Введите пароль"
+              autocomplete="current-password"
+              [type]="passwordVisible() ? 'text' : 'password'"
+              [formField]="loginForm.password"
+            >
+            @if (!passwordField.disabled()) {
+              <button
+                class="field__toggle"
+                type="button"
+                [class.field__toggle--active]="passwordVisible()"
+                [attr.aria-label]="passwordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
+                (click)="passwordVisible.update((visible) => !visible)"
+              >
+                <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+                  <path
+                    transform="translate(2.4 5.8)"
+                    d="M27.068 9.381C24.105 3.141 19.627 0 13.624 0C7.618 0 3.143 3.141 0.18 9.384C0.062 9.636 0 9.911 0 10.189C0 10.467 0.062 10.742 0.18 10.994C3.143 17.234 7.621 20.375 13.624 20.375C19.63 20.375 24.105 17.234 27.068 10.991C27.309 10.484 27.309 9.897 27.068 9.381ZM13.624 18.125C8.584 18.125 4.893 15.569 2.29 10.188C4.893 4.806 8.584 2.25 13.624 2.25C18.665 2.25 22.355 4.806 24.959 10.188C22.359 15.569 18.668 18.125 13.624 18.125ZM13.499 4.688C10.462 4.688 7.999 7.15 7.999 10.188C7.999 13.225 10.462 15.688 13.499 15.688C16.537 15.688 18.999 13.225 18.999 10.188C18.999 7.15 16.537 4.688 13.499 4.688ZM13.499 13.688C11.565 13.688 9.999 12.122 9.999 10.188C9.999 8.253 11.565 6.688 13.499 6.688C15.434 6.688 16.999 8.253 16.999 10.188C16.999 12.122 15.434 13.688 13.499 13.688Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    class="field__toggle-line"
+                    transform="matrix(0.7071 -0.7071 0.7071 0.7071 4.647 29.053)"
+                    d="M1 -2C0.448 -2 0 -1.552 0 -1C0 -0.448 0.448 0 1 0L1 -1L1 -2ZM32.242 0C32.794 0 33.242 -0.448 33.242 -1C33.242 -1.552 32.794 -2 32.242 -2L32.242 -1L32.242 0ZM1 -1L1 0L32.242 0L32.242 -1L32.242 -2L1 -2L1 -1Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            }
+          </div>
+          @if (passwordField.errors()[0]; as error) {
+            <p class="field__error">{{ error.message }}</p>
+          }
+        </div>
+        @if (loginForm().errors()[0]; as error) {
+          <p class="login__error">{{ error.message }}</p>
+        }
+        <button
+          class="button login__submit"
+          type="submit"
+          [class.login__submit--progress]="loginForm().submitting()"
+          [disabled]="loginForm().invalid()"
+        >
+          @if (loginForm().submitting()) {
+            <svg class="login__spinner" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+              <path
+                transform="translate(4 4)"
+                d="M11.99 0C12.909 0 13.769 0.1 14.588 0.28C14.835 0.35 15.045 0.513 15.177 0.734C15.308 0.954 15.35 1.217 15.293 1.468C15.237 1.719 15.087 1.938 14.874 2.082C14.661 2.225 14.401 2.282 14.148 2.24C13.469 2.08 12.749 2 11.99 2C6.475 2 1.998 6.48 1.998 12C2 13.496 2.336 14.973 2.983 16.321C3.63 17.67 4.571 18.856 5.737 19.793C6.903 20.729 8.264 21.392 9.719 21.733C11.175 22.073 12.688 22.082 14.148 21.76C14.401 21.718 14.661 21.775 14.874 21.918C15.087 22.062 15.237 22.281 15.293 22.532C15.35 22.783 15.308 23.046 15.177 23.266C15.045 23.487 14.835 23.65 14.588 23.72C13.749 23.92 12.909 24 11.99 24C5.376 24 0 18.62 0 12C0 5.38 5.376 0 11.99 0ZM20.243 17.66C20.563 17.2 21.182 17.1 21.642 17.42C22.102 17.74 22.201 18.36 21.882 18.82C20.983 20.1 19.883 21.2 18.604 22.04C18.44 22.153 18.244 22.209 18.045 22.2L18.045 22.18C17.725 22.18 17.405 22.02 17.206 21.74C17.061 21.52 17.009 21.251 17.062 20.992C17.114 20.734 17.266 20.507 17.485 20.36C18.565 19.64 19.484 18.74 20.243 17.66ZM22.581 8.8C23.121 8.7 23.64 9.04 23.76 9.6C23.92 10.42 24 11.24 24 12.04C24 13 23.88 13.94 23.66 14.84C23.54 15.3 23.141 15.6 22.681 15.6L22.681 15.56C22.601 15.558 22.521 15.551 22.441 15.54C22.186 15.475 21.967 15.314 21.828 15.09C21.69 14.866 21.645 14.597 21.702 14.34C22.049 12.91 22.076 11.422 21.782 9.98C21.682 9.44 22.022 8.92 22.581 8.8ZM17.226 2.28C17.525 1.82 18.145 1.68 18.604 2C19.983 2.92 21.202 4.14 22.102 5.54C22.198 5.691 22.252 5.865 22.258 6.044C22.264 6.223 22.222 6.401 22.136 6.558C22.05 6.715 21.924 6.846 21.77 6.938C21.617 7.03 21.441 7.079 21.262 7.08L21.242 7.06C20.923 7.06 20.583 6.9 20.403 6.6C19.664 5.44 18.644 4.42 17.505 3.66C17.286 3.513 17.134 3.286 17.082 3.028C17.029 2.769 17.081 2.5 17.226 2.28Z"
+                fill="currentColor"
+              />
+            </svg>
+          }
+          Войти
+        </button>
+      </form>
+    </div>
+  </div>
+  <img class="login__image" src="/images/login.png" width="752" height="899" alt="">
+</section>
+<app-footer />

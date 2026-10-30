@@ -1,0 +1,36 @@
+@use '../../../styles/variables' as *;
+
+.footer {
+  height: 125px;
+  padding-top: 30px;
+  background-color: $color-light-beige;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.footer__about {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__copyright {
+  font-size: 14px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.footer__link {
+  font-size: 16px;
+  color: $color-light-brown;
+  border-bottom: 1px solid $color-light-brown;
+}

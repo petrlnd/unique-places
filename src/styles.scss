@@ -35,6 +35,38 @@ body {
   margin: 0 auto;
 }
 
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 400px;
+  height: 51px;
+  padding: 0 15px;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  color: $color-white;
+  background-color: $color-brown;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-light-brown;
+  }
+
+  &:active {
+    background-color: $color-button-pressed;
+  }
+
+  &:disabled {
+    color: $color-button-disabled-text;
+    background-color: $color-button-disabled;
+    cursor: default;
+  }
+}
+
 .tooltip {
   position: absolute;
   z-index: 200;

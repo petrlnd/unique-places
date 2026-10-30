@@ -1,0 +1,17 @@
+<div class="state">
+  <div class="state__media">
+    <img class="state__image" [src]="image()" [width]="imageWidth()" [height]="imageHeight()" alt="">
+    @if (loading()) {
+      <div class="state__spinner">
+        @for (dot of spinnerDots; track $index) {
+          <span class="state__dot" [style.left.px]="dot.x" [style.top.px]="dot.y" [style.opacity]="dot.opacity"></span>
+        }
+      </div>
+    }
+  </div>
+  <div class="state__text">
+    <h2 class="state__title">{{ title() }}</h2>
+    <p class="state__description">{{ text() }}</p>
+  </div>
+  <ng-content />
+</div>

@@ -19,10 +19,12 @@
         <p class="place-card__location">{{ place().city }}, {{ place().country }}</p>
       </div>
       <div class="place-card__stats">
-        <div class="place-card__rating">
-          <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
-          {{ place().rating | rating }}
-        </div>
+        @if (place().rating; as rating) {
+          <div class="place-card__rating">
+            <img class="place-card__star" src="/images/rating-star.svg" alt="Рейтинг">
+            {{ rating | rating }}
+          </div>
+        }
         @if (place().priceLevel; as priceLevel) {
           <div class="place-card__price">{{ priceLevel | price }}</div>
         }
@@ -34,7 +36,7 @@
           }
         </ul>
       }
-      <p class="place-card__description">{{ place().description }}</p>
+      <p class="place-card__description">{{ place().shortDescription }}</p>
     </div>
     <button class="place-card__more" type="button" (click)="openDetails.emit()">Подробнее</button>
   </div>

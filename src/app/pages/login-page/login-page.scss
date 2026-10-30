@@ -1,0 +1,178 @@
+@use '../../../styles/variables' as *;
+
+.login {
+  position: relative;
+  height: 899px;
+  background: url('/images/pattern.png') no-repeat center -230px;
+}
+
+.login__content {
+  width: 471px;
+  padding-top: 196px;
+}
+
+.login__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $color-gray;
+}
+
+.login__separator {
+  width: 253px;
+  height: 25px;
+  margin-top: 19.5px;
+  background: url('/images/line-star.png') no-repeat;
+}
+
+.login__subtitle {
+  margin-top: 18px;
+  font-size: 25px;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+  padding: 32px;
+  background-color: $color-white;
+  border: 1px solid $color-card-border;
+  border-radius: 24px;
+}
+
+.login__error {
+  display: none;
+  font-size: 16px;
+  color: $color-error;
+}
+
+.login__form--error .login__error {
+  display: block;
+}
+
+.login__submit--progress,
+.login__submit--progress:hover {
+  background-color: $color-button-pressed;
+  cursor: default;
+}
+
+.login__spinner {
+  animation: login-spinner 1s linear infinite;
+}
+
+@keyframes login-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login__image {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field__label {
+  font-size: 16px;
+}
+
+.field__control {
+  position: relative;
+  width: 400px;
+}
+
+.field__input {
+  width: 400px;
+  height: 51px;
+  padding: 0 15px;
+  font: inherit;
+  font-size: 16px;
+  color: $color-dark-gray;
+  background-color: $color-white;
+  border: 1px solid $color-light-gray-2;
+  border-radius: 8px;
+  outline: none;
+
+  &::placeholder {
+    color: $color-light-gray-2;
+  }
+
+  &:hover {
+    border-color: $color-input-hover;
+
+    &::placeholder {
+      color: $color-input-placeholder-hover;
+    }
+  }
+
+  &:focus {
+    border-color: $color-light-brown;
+  }
+
+  &:disabled {
+    color: $color-light-gray-2;
+    background-color: $color-button-disabled-text;
+    border-color: rgba($color-light-gray-2, 0.5);
+  }
+}
+
+.field__input--password {
+  padding-right: 50px;
+}
+
+.field__toggle {
+  position: absolute;
+  top: 9.5px;
+  right: 16px;
+  display: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: $color-gray;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.field__control:focus-within .field__toggle,
+.field--filled .field__toggle {
+  display: block;
+}
+
+.field__toggle-line {
+  display: none;
+}
+
+.field__toggle--active .field__toggle-line {
+  display: inline;
+}
+
+.field__error {
+  display: none;
+  font-size: 14px;
+  color: $color-error;
+}
+
+.field--error {
+  .field__input {
+    background-color: $color-error-bg;
+    border-color: $color-error;
+  }
+
+  .field__error {
+    display: block;
+  }
+}
+
+.login__form--error .field__input {
+  background-color: $color-error-bg;
+  border-color: $color-error;
+}

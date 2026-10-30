@@ -1,0 +1,48 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  display: block;
+  background: url('/images/pattern.png') no-repeat center 218px;
+}
+
+.banner {
+  height: 273px;
+  padding-top: 60px;
+  background: url('/images/favorites-band.png') no-repeat center top / cover;
+}
+
+.banner__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $color-gray;
+}
+
+.banner__separator {
+  width: 253px;
+  height: 25px;
+  margin-top: 10.5px;
+  background: url('/images/line-star.png') no-repeat;
+}
+
+.banner__subtitle {
+  margin-top: 13px;
+  font-size: 25px;
+}
+
+.favorites {
+  padding: 60px 0;
+}
+
+.favorites__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 25px 24px;
+}
+
+.favorites__state {
+  display: block;
+  padding: 40px 0;
+}

@@ -28,12 +28,13 @@
   width: 32px;
   height: 32px;
   padding: 0;
-  background: url('/images/close.svg') no-repeat center;
+  color: $color-gray;
+  background: none;
   border: none;
   cursor: pointer;
 
   &:hover {
-    background-image: url('/images/close-hover.svg');
+    color: $color-light-brown;
   }
 }
 

@@ -1,6 +1,13 @@
 <div class="modal" (click)="closed.emit()">
   <div class="modal__window" (click)="$event.stopPropagation()">
-    <button class="modal__close" type="button" aria-label="Закрыть" (click)="closed.emit()"></button>
+    <button class="modal__close" type="button" aria-label="Закрыть" (click)="closed.emit()">
+      <svg width="32" height="32" viewBox="-8 -8 32 32" aria-hidden="true">
+        <path
+          d="M15.293 16.707C15.683 17.098 16.317 17.098 16.707 16.707C17.098 16.317 17.098 15.683 16.707 15.293L16 16L15.293 16.707ZM0.707 -0.707C0.317 -1.098 -0.317 -1.098 -0.707 -0.707C-1.098 -0.317 -1.098 0.317 -0.707 0.707L0 0L0.707 -0.707ZM16.707 0.707C17.098 0.317 17.098 -0.317 16.707 -0.707C16.317 -1.098 15.683 -1.098 15.293 -0.707L16 0L16.707 0.707ZM-0.707 15.293C-1.098 15.683 -1.098 16.317 -0.707 16.707C-0.317 17.098 0.317 17.098 0.707 16.707L0 16L-0.707 15.293ZM16 16L16.707 15.293L8.707 7.293L8 8L7.293 8.707L15.293 16.707L16 16ZM8 8L8.707 7.293L0.707 -0.707L0 0L-0.707 0.707L7.293 8.707L8 8ZM8 8L8.707 8.707L16.707 0.707L16 0L15.293 -0.707L7.293 7.293L8 8ZM8 8L7.293 7.293L-0.707 15.293L0 16L0.707 16.707L8.707 8.707L8 8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
     <div class="modal__content">
       <div class="modal__media">
         <img class="modal__image" [src]="place().imageUrl" [alt]="place().name">
@@ -24,10 +31,12 @@
             <p class="modal__location">{{ place().city }}, {{ place().country }}</p>
           </div>
           <div class="modal__stats">
-            <div class="modal__rating">
-              <img src="/images/rating-star.svg" alt="Рейтинг">
-              {{ place().rating | rating }}
-            </div>
+            @if (place().rating; as rating) {
+              <div class="modal__rating">
+                <img src="/images/rating-star.svg" alt="Рейтинг">
+                {{ rating | rating }}
+              </div>
+            }
             @if (place().priceLevel; as priceLevel) {
               <div class="modal__price">{{ priceLevel | price }}</div>
             }
