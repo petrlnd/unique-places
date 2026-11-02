@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
+import { AuthStore } from '../stores/auth-store';
 import { FavoritesStore } from '../stores/favorites-store';
 import { Footer } from './footer/footer';
 import { Header } from './header/header';
@@ -13,6 +14,8 @@ import { Header } from './header/header';
 })
 export class Layout {
   constructor() {
-    inject(FavoritesStore).load().pipe(takeUntilDestroyed()).subscribe();
+    if (inject(AuthStore).isAuthenticated()) {
+      inject(FavoritesStore).load().pipe(takeUntilDestroyed()).subscribe();
+    }
   }
 }

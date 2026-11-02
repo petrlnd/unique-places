@@ -1,9 +1,20 @@
 @use '../../../styles/variables' as *;
 
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .login {
   position: relative;
+  flex: 1 0 auto;
   height: 899px;
   background: url('/images/pattern.png') no-repeat center -230px;
+}
+
+.login__footer {
+  flex: 0 0 auto;
 }
 
 .login__content {

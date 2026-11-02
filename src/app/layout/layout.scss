@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout__content {
+  flex: 1 0 auto;
+}
+
+.layout__footer {
+  flex: 0 0 auto;
+}

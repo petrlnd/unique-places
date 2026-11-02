@@ -13,16 +13,22 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout,
-    canActivate: [authGuard],
     children: [
       {
-        path: 'places',
-        loadComponent: () => import('./pages/places-page/places-page').then((m) => m.PlacesPage),
-      },
-      {
-        path: 'favorites',
-        loadComponent: () =>
-          import('./pages/favorites-page/favorites-page').then((m) => m.FavoritesPage),
+        path: '',
+        canActivate: [authGuard],
+        children: [
+          {
+            path: 'places',
+            loadComponent: () =>
+              import('./pages/places-page/places-page').then((m) => m.PlacesPage),
+          },
+          {
+            path: 'favorites',
+            loadComponent: () =>
+              import('./pages/favorites-page/favorites-page').then((m) => m.FavoritesPage),
+          },
+        ],
       },
       {
         path: '**',
