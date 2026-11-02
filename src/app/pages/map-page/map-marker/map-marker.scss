@@ -1,0 +1,22 @@
+@use '../../../../styles/variables' as *;
+
+:host {
+  display: block;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.marker {
+  display: block;
+  color: $color-dark-gray;
+
+  &:hover {
+    color: $color-brown;
+  }
+}
+
+.marker--active,
+.marker--active:hover {
+  color: $color-light-brown;
+}

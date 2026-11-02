@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth-guard';
 import { guestGuard } from './guards/guest-guard';
 import { Layout } from './layout/layout';
+import { MapPage } from './pages/map-page/map-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'places', pathMatch: 'full' },
@@ -28,6 +29,7 @@ export const routes: Routes = [
             loadComponent: () =>
               import('./pages/favorites-page/favorites-page').then((m) => m.FavoritesPage),
           },
+          { path: 'map', component: MapPage },
         ],
       },
       {

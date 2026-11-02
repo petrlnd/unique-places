@@ -1,0 +1,23 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  position: relative;
+  display: block;
+  width: 66px;
+  height: 69px;
+  animation: spinner-rotate 1s steps(10) infinite;
+}
+
+.spinner__dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: $color-spinner;
+  border-radius: 50%;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -8,6 +8,14 @@
   text-align: center;
 }
 
+.state--compact {
+  gap: 20px;
+
+  .state__title {
+    font-size: 30px;
+  }
+}
+
 .state__media {
   position: relative;
 }
@@ -16,17 +24,6 @@
   position: absolute;
   top: 176px;
   left: 291px;
-  width: 66px;
-  height: 69px;
-  animation: spinner-rotate 1s steps(10) infinite;
-}
-
-.state__dot {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background-color: $color-spinner;
-  border-radius: 50%;
 }
 
 .state__text {
@@ -43,10 +40,4 @@
 
 .state__description {
   font-size: 25px;
-}
-
-@keyframes spinner-rotate {
-  to {
-    transform: rotate(360deg);
-  }
 }

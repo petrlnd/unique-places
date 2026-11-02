@@ -1,0 +1,81 @@
+@use '../../../../styles/variables' as *;
+
+.map-popup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 422px;
+  padding: 16px;
+  background-color: $color-white;
+  border: 1px solid $color-card-border;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.map-popup__image {
+  flex-shrink: 0;
+  width: 140px;
+  height: 127px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.map-popup__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.map-popup__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-gray;
+}
+
+.map-popup__info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.map-popup__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-popup__category {
+  font-weight: 600;
+  color: $color-light-brown;
+}
+
+.map-popup__location {
+  color: $color-light-gray-2;
+}
+
+.map-popup__rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 45px;
+}
+
+.map-popup__more {
+  align-self: flex-start;
+  padding: 0;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-brown;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $color-brown;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-more-hover;
+    border-color: $color-more-hover;
+  }
+}

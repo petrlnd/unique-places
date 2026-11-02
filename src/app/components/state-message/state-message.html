@@ -1,12 +1,8 @@
-<div class="state">
+<div class="state" [class.state--compact]="compact()">
   <div class="state__media">
     <img class="state__image" [src]="image()" [width]="imageWidth()" [height]="imageHeight()" alt="">
     @if (loading()) {
-      <div class="state__spinner">
-        @for (dot of spinnerDots; track $index) {
-          <span class="state__dot" [style.left.px]="dot.x" [style.top.px]="dot.y" [style.opacity]="dot.opacity"></span>
-        }
-      </div>
+      <app-spinner class="state__spinner" />
     }
   </div>
   <div class="state__text">

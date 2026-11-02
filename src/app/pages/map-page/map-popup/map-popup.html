@@ -1,0 +1,19 @@
+<article class="map-popup">
+  <img class="map-popup__image" [src]="place().imageUrl" [alt]="place().name">
+  <div class="map-popup__body">
+    <h2 class="map-popup__title">{{ place().name }}</h2>
+    <div class="map-popup__info">
+      <div class="map-popup__meta">
+        <p class="map-popup__category">{{ place().category | category }}</p>
+        <p class="map-popup__location">{{ place().city }}, {{ place().country }}</p>
+      </div>
+      @if (place().rating; as rating) {
+        <div class="map-popup__rating">
+          <img src="/images/rating-star.svg" alt="Рейтинг">
+          {{ rating | rating }}
+        </div>
+      }
+    </div>
+    <button class="map-popup__more" type="button" (click)="openDetails.emit()">Подробнее</button>
+  </div>
+</article>

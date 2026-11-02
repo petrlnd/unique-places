@@ -1,0 +1,117 @@
+@use '../../../styles/variables' as *;
+
+:host {
+  display: block;
+  background: url('/images/pattern.png') no-repeat center 249px;
+}
+
+.banner {
+  height: 273px;
+  padding-top: 60px;
+  background: url('/images/map-band.png') no-repeat center top / cover;
+}
+
+.banner__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 45px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: $color-gray;
+}
+
+.banner__separator {
+  width: 253px;
+  height: 25px;
+  margin-top: 10.5px;
+  background: url('/images/line-star.png') no-repeat;
+}
+
+.banner__subtitle {
+  max-width: 630px;
+  margin-top: 13px;
+  font-size: 25px;
+}
+
+.map-section {
+  padding: 60px 0 100px;
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+}
+
+.categories__tab {
+  padding: 8px 20px;
+  font: inherit;
+  font-size: 18px;
+  color: $color-dark-gray;
+  background-color: $color-page-bg;
+  border: 1px solid $color-gray;
+  border-radius: 1000px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-light-brown;
+    border-color: $color-beige;
+  }
+}
+
+.categories__tab--active,
+.categories__tab--active:hover {
+  color: $color-dark-gray;
+  background-color: $color-beige;
+  border-color: $color-beige;
+}
+
+.map {
+  position: relative;
+  height: 575px;
+  margin-top: 40px;
+  overflow: hidden;
+  border-radius: 32px;
+}
+
+.map__canvas {
+  height: 100%;
+  background-color: $color-light-gray-1;
+}
+
+.map__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.map__overlay--loading {
+  justify-content: flex-start;
+  gap: 20px;
+  padding-top: 233px;
+  background-color: rgba($color-light-beige, 0.8);
+}
+
+.map__overlay--error {
+  background-color: $color-light-beige;
+}
+
+.map__overlay--empty {
+  background-color: rgba($color-light-beige, 0.6);
+}
+
+.map__loading-title {
+  font-size: 40px;
+  font-weight: 600;
+  color: $color-gray;
+}
+
+.map__empty {
+  display: block;
+  width: 548px;
+  padding: 32px;
+  background-color: $color-white;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
